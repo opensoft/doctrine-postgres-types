@@ -1,0 +1,23 @@
+{
+    "name": "opensoft/doctrine-postgres-types",
+    "description": "Provide some common postgres types for doctrine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Fullmer",
+            "email": "richard.fullmer@opensoftdev.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "doctrine/dbal": "*",
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Doctrine\\DBAL\\PostgresTypes\\": "src/"
+        }
+    }
+}
