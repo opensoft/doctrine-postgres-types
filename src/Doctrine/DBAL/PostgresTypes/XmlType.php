@@ -38,7 +38,7 @@ class XmlType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new \SimpleXMLElement($value);
+        return $value === null ?: new \SimpleXMLElement($value);
     }
 
     /**
