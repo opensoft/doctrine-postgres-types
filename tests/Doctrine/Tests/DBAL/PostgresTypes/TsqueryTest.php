@@ -40,6 +40,6 @@ class TsqueryTest extends \PHPUnit_Framework_TestCase
 
     public function testConvertToDatabaseValueSQL()
     {
-        $this->assertTrue('to_tsquery(test)', $this->type->convertToDatabaseValueSQL('test', $this->platform));
+        $this->assertEquals('to_tsquery(test)', $this->type->convertToDatabaseValueSQL('test', $this->platform));
     }
 }
