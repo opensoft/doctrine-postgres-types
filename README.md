@@ -11,9 +11,10 @@ Provides Doctrine Type classes for common postgres types
     doctrine:
         dbal:
             types:
+                text_array: "Doctrine\\DBAL\\PostgresTypes\\TextArrayType"
                 tsvector: "Doctrine\\DBAL\\PostgresTypes\\TsvectorType"
-                xml: "Doctrine\\DBAL\\PostgresTypes\\XmlType"
                 tsquery: "Doctrine\\DBAL\\PostgresTypes\\TsqueryType"
+                xml: "Doctrine\\DBAL\\PostgresTypes\\XmlType"
 
 #### Using with Doctrine
 
@@ -21,9 +22,10 @@ Provides Doctrine Type classes for common postgres types
 
     use Doctrine\DBAL\Types\Type;
 
+    Type::addType('text_array', "Doctrine\\DBAL\\PostgresTypes\\TextArrayType");
     Type::addType('tsvector', "Doctrine\\DBAL\\PostgresTypes\\TsvectorType");
-    Type::addType('xml', "Doctrine\\DBAL\\PostgresTypes\\XmlType");
     Type::addType('tsquery', "Doctrine\\DBAL\\PostgresTypes\\TsqueryType");
+    Type::addType('xml', "Doctrine\\DBAL\\PostgresTypes\\XmlType");
 
 #### License
 
