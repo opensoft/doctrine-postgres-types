@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * This file is part of Opensoft Doctrine Postgres Types.
+ *
+ * Copyright (c) 2013 Opensoft (http://opensoftdev.com)
+ *
+ * The unauthorized use of this code outside the boundaries of
+ * Opensoft is prohibited.
+ */
 namespace Doctrine\DBAL\PostgresTypes;
 
 use Doctrine\DBAL\Types\Type;
@@ -15,16 +22,25 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
  */
 class TsvectorType extends Type
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'tsvector';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function canRequireSQLConversion()
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         return "TSVECTOR";
@@ -55,7 +71,7 @@ class TsvectorType extends Type
     /**
      * Modifies the SQL expression (identifier, parameter) to convert to a PHP value.
      *
-     * @param string $sqlExpr
+     * @param string $value
      * @param AbstractPlatform $platform
      * @return string
      */
