@@ -50,9 +50,9 @@ class TsvectorType extends Type
      * Converts a value from its database representation to its PHP representation
      * of this type.
      *
-     * @param mixed $value The value to convert.
-     * @param AbstractPlatform $platform The currently used database platform.
-     * @return mixed The PHP representation of the value.
+     * @param  mixed            $value    The value to convert.
+     * @param  AbstractPlatform $platform The currently used database platform.
+     * @return mixed            The PHP representation of the value.
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
@@ -71,8 +71,8 @@ class TsvectorType extends Type
     /**
      * Modifies the SQL expression (identifier, parameter) to convert to a PHP value.
      *
-     * @param string $value
-     * @param AbstractPlatform $platform
+     * @param  string           $value
+     * @param  AbstractPlatform $platform
      * @return string
      */
     public function convertToPHPValueSQL($value, $platform)
@@ -83,8 +83,8 @@ class TsvectorType extends Type
     /**
      * Modifies the SQL expression (identifier, parameter) to convert to a database value.
      *
-     * @param string $sqlExpr
-     * @param AbstractPlatform $platform
+     * @param  string           $sqlExpr
+     * @param  AbstractPlatform $platform
      * @return string
      */
     public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform)
@@ -96,9 +96,9 @@ class TsvectorType extends Type
      * Converts a value from its PHP representation to its database representation
      * of this type.
      *
-     * @param mixed $value The value to convert.
-     * @param AbstractPlatform $platform The currently used database platform.
-     * @return mixed The database representation of the value.
+     * @param  mixed            $value    The value to convert.
+     * @param  AbstractPlatform $platform The currently used database platform.
+     * @return mixed            The database representation of the value.
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
