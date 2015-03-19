@@ -3,9 +3,6 @@
  * This file is part of Opensoft Doctrine Postgres Types.
  *
  * Copyright (c) 2013 Opensoft (http://opensoftdev.com)
- *
- * The unauthorized use of this code outside the boundaries of
- * Opensoft is prohibited.
  */
 namespace Doctrine\DBAL\PostgresTypes;
 
