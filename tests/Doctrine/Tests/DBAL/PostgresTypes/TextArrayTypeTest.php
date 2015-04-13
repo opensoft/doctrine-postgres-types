@@ -77,7 +77,8 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
     public static function databaseConvertProvider()
     {
         return array(
-            array('{simple,extended}', array('simple', 'extended'))
+            array('{simple,extended}', array('simple', 'extended')),
+            array('{}', array())
         );
     }
 }

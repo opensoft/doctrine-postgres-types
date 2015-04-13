@@ -46,7 +46,13 @@ class TextArrayType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return explode(',', trim($value, '{}'));
+        $value = trim($value, '{}');
+
+        if ($value === '') {
+            return array();
+        } else {
+            return explode(',', $value);
+        }
     }
 
     /**
