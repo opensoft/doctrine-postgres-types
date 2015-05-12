@@ -15,6 +15,7 @@ Provides Doctrine Type classes for common postgres types
                 tsvector: "Doctrine\\DBAL\\PostgresTypes\\TsvectorType"
                 tsquery: "Doctrine\\DBAL\\PostgresTypes\\TsqueryType"
                 xml: "Doctrine\\DBAL\\PostgresTypes\\XmlType"
+                inet: "Doctrine\\DBAL\\PostgresTypes\\InetType"
 
 #### Using with Doctrine
 
@@ -26,6 +27,7 @@ Provides Doctrine Type classes for common postgres types
     Type::addType('tsvector', "Doctrine\\DBAL\\PostgresTypes\\TsvectorType");
     Type::addType('tsquery', "Doctrine\\DBAL\\PostgresTypes\\TsqueryType");
     Type::addType('xml', "Doctrine\\DBAL\\PostgresTypes\\XmlType");
+    Type::addType('inet', "Doctrine\\DBAL\\PostgresTypes\\InetType");
 
 #### License
 
