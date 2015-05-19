@@ -10,16 +10,16 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 
 /**
- * Class TextArrayTypeTest
+ * Class IntArrayTypeTest
  *
- * Unit tests for the TextArray type
+ * Unit tests for the IntArray type
  *
  * @package Doctrine\Tests\DBAL\Types
  */
-class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
+class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\TextArrayType
+     * @var \Doctrine\DBAL\PostgresTypes\IntArrayType
      */
     protected $_type;
 
@@ -33,7 +33,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        Type::addType('text_array', "Doctrine\\DBAL\\PostgresTypes\\TextArrayType");
+        Type::addType('int_array', "Doctrine\\DBAL\\PostgresTypes\\IntArrayType");
     }
 
     /**
@@ -42,7 +42,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_platform = new PostgreSqlPlatform();
-        $this->_type = Type::getType('text_array');
+        $this->_type = Type::getType('int_array');
     }
 
     /**
@@ -50,7 +50,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider databaseConvertProvider
      */
-    public function testTextArrayConvertsToDatabaseValue($serialized, $array)
+    public function testIntArrayConvertsToDatabaseValue($serialized, $array)
     {
         $converted = $this->_type->convertToDatabaseValue($array, $this->_platform);
         $this->assertInternalType('string', $converted);
@@ -62,7 +62,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider databaseConvertProvider
      */
-    public function testTextArrayConvertsToPHPValue($serialized, $array)
+    public function testIntArrayConvertsToPHPValue($serialized, $array)
     {
         $converted = $this->_type->convertToPHPValue($serialized, $this->_platform);
         $this->assertInternalType('array', $converted);
@@ -70,7 +70,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
 
         if (sizeof($converted) > 0)
         {
-            $this->assertInternalType("string", reset($converted));
+            $this->assertInternalType("int", reset($converted));
         }
     }
 
@@ -82,7 +82,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
     public static function databaseConvertProvider()
     {
         return array(
-            array('{simple,extended}', array('simple', 'extended')),
+            array('{1,2,3}', array(1,2,3)),
             array('{}', array())
         );
     }
