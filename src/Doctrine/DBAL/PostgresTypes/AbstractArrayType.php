@@ -19,14 +19,6 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 abstract class AbstractArrayType extends Type
 {
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'text_array';
-    }
-
-    /**
      * Converts a value from its database representation to its PHP representation
      * of this type.
      *
