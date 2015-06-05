@@ -31,7 +31,7 @@ class IntArrayType extends AbstractArrayType
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return "INTEGER[]";
+        return "_int4";
     }
 
     /**
