@@ -40,6 +40,7 @@ class IntArrayType extends AbstractArrayType
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $result = parent::convertToPHPValue($value, $platform);
+        
         return array_map('intval', $result);
     }
 }
