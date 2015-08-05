@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -10,7 +11,7 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 
 /**
- * Doctrine\Tests\DBAL\Types\TsqueryTest
+ * Doctrine\Tests\DBAL\Types\TsqueryTest.
  *
  * Unit tests for the Tsquery type
  *
@@ -29,15 +30,15 @@ class TsqueryTest extends \PHPUnit_Framework_TestCase
     protected $platform;
 
     /**
-     * Pre-instantiation setup
+     * Pre-instantiation setup.
      */
     public static function setUpBeforeClass()
     {
-        Type::addType('tsquery', "Doctrine\\DBAL\\PostgresTypes\\TsqueryType");
+        Type::addType('tsquery', 'Doctrine\\DBAL\\PostgresTypes\\TsqueryType');
     }
 
     /**
-     * Pre-execution setup
+     * Pre-execution setup.
      */
     protected function setUp()
     {
@@ -46,7 +47,7 @@ class TsqueryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion to database value
+     * Test conversion to database value.
      */
     public function testConvertToDatabaseValueSQL()
     {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -10,11 +11,9 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 
 /**
- * Class IntArrayTypeTest
+ * Class IntArrayTypeTest.
  *
  * Unit tests for the IntArray type
- *
- * @package Doctrine\Tests\DBAL\Types
  */
 class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,15 +28,15 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
     protected $_platform;
 
     /**
-     * Pre-instantiation setup
+     * Pre-instantiation setup.
      */
     public static function setUpBeforeClass()
     {
-        Type::addType('int_array', "Doctrine\\DBAL\\PostgresTypes\\IntArrayType");
+        Type::addType('int_array', 'Doctrine\\DBAL\\PostgresTypes\\IntArrayType');
     }
 
     /**
-     * Pre-execution setup
+     * Pre-execution setup.
      */
     protected function setUp()
     {
@@ -46,7 +45,7 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of PHP array to database value
+     * Test conversion of PHP array to database value.
      *
      * @dataProvider databaseConvertProvider
      */
@@ -58,7 +57,7 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of database value to PHP array
+     * Test conversion of database value to PHP array.
      *
      * @dataProvider databaseConvertProvider
      */
@@ -68,14 +67,13 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $converted);
         $this->assertEquals($array, $converted);
 
-        if (sizeof($converted) > 0)
-        {
-            $this->assertInternalType("int", reset($converted));
+        if (sizeof($converted) > 0) {
+            $this->assertInternalType('int', reset($converted));
         }
     }
 
     /**
-     * Provider for conversion test values
+     * Provider for conversion test values.
      *
      * @return array
      */
@@ -83,7 +81,7 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('{1,2,3}', array(1,2,3)),
-            array('{}', array())
+            array('{}', array()),
         );
     }
 }

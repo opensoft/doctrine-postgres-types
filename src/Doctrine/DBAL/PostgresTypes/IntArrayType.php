@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -9,7 +10,7 @@ namespace Doctrine\DBAL\PostgresTypes;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * IntArrayType
+ * IntArrayType.
  *
  * Only supports single dimensional arrays like text[].
  *
@@ -25,13 +26,12 @@ class IntArrayType extends AbstractArrayType
         return 'int_array';
     }
 
-
     /**
      * {@inheritdoc}
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return "_int4";
+        return '_int4';
     }
 
     /**

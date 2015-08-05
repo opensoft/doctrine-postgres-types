@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -25,15 +26,15 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     protected $_platform;
 
     /**
-     * Pre-instantiation setup
+     * Pre-instantiation setup.
      */
     public static function setUpBeforeClass()
     {
-        Type::addType('inet', "Doctrine\\DBAL\\PostgresTypes\\InetType");
+        Type::addType('inet', 'Doctrine\\DBAL\\PostgresTypes\\InetType');
     }
 
     /**
-     * Pre-execution setup
+     * Pre-execution setup.
      */
     protected function setUp()
     {
@@ -42,7 +43,7 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of PHP array to database value
+     * Test conversion of PHP array to database value.
      *
      * @dataProvider databaseConvertProvider
      */
@@ -54,7 +55,7 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of database value to PHP array
+     * Test conversion of database value to PHP array.
      *
      * @dataProvider databaseConvertProvider
      */
@@ -76,7 +77,7 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provider for conversion test values
+     * Provider for conversion test values.
      *
      * @return array
      */
@@ -84,7 +85,7 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('10.0.0.1', '10.0.0.1'),
-            array('10.0.0.1/4', '10.0.0.1/4')
+            array('10.0.0.1/4', '10.0.0.1/4'),
         );
     }
 
@@ -97,7 +98,7 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
             array(''),
             array('someothervalue'),
             array(123),
-            array('123345')
+            array('123345'),
         );
     }
 }

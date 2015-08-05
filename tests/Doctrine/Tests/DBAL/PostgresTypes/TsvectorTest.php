@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -10,11 +11,9 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 
 /**
- * Class TsvectorTest
+ * Class TsvectorTest.
  *
  * Unit tests for the TextArray type
- *
- * @package Doctrine\Tests\DBAL\Types
  */
 class TsvectorTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,15 +28,15 @@ class TsvectorTest extends \PHPUnit_Framework_TestCase
     protected $_platform;
 
     /**
-     * Pre-instantiation setup
+     * Pre-instantiation setup.
      */
     public static function setUpBeforeClass()
     {
-        Type::addType('tsvector', "Doctrine\\DBAL\\PostgresTypes\\TsvectorType");
+        Type::addType('tsvector', 'Doctrine\\DBAL\\PostgresTypes\\TsvectorType');
     }
 
     /**
-     * Pre-execution setup
+     * Pre-execution setup.
      */
     protected function setUp()
     {
@@ -46,7 +45,7 @@ class TsvectorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of PHP array to database value
+     * Test conversion of PHP array to database value.
      */
     public function testTsvectorConvertsToDatabaseValue()
     {
@@ -54,7 +53,7 @@ class TsvectorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of database value to PHP array
+     * Test conversion of database value to PHP array.
      */
     public function testTsvectorConvertsToPHPValue()
     {

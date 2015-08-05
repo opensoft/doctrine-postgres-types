@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -9,7 +10,7 @@ namespace Doctrine\DBAL\PostgresTypes;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * TextArrayType
+ * TextArrayType.
  *
  * Only supports single dimensional arrays like text[].
  *
@@ -30,6 +31,6 @@ class TextArrayType extends AbstractArrayType
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return "TEXT[]";
+        return 'TEXT[]';
     }
 }

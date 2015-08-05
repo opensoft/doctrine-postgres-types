@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -10,7 +11,7 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * Opensoft\Onp\WebBundle\Doctrine\DBAL\Types\TsqueryType
+ * Opensoft\Onp\WebBundle\Doctrine\DBAL\Types\TsqueryType.
  *
  * @author Ivan Molchanov <ivan.molchanov@opensoftdev.ru>
  */
@@ -37,7 +38,7 @@ class TsqueryType extends Type
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return "TSQUERY";
+        return 'TSQUERY';
     }
 
     /**
@@ -47,5 +48,4 @@ class TsqueryType extends Type
     {
         return sprintf('to_tsquery(%s)', $sqlExpr);
     }
-
 }
