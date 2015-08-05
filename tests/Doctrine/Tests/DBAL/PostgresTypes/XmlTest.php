@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Opensoft Doctrine Postgres Types.
  *
@@ -10,11 +11,9 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 
 /**
- * Class XmlTest
+ * Class XmlTest.
  *
  * Unit tests for the XML type
- *
- * @package Doctrine\Tests\DBAL\Types
  */
 class XmlTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,15 +28,15 @@ class XmlTest extends \PHPUnit_Framework_TestCase
     protected $_platform;
 
     /**
-     * Pre-instantiation setup
+     * Pre-instantiation setup.
      */
     public static function setUpBeforeClass()
     {
-        Type::addType('xml', "Doctrine\\DBAL\\PostgresTypes\\XmlType");
+        Type::addType('xml', 'Doctrine\\DBAL\\PostgresTypes\\XmlType');
     }
 
     /**
-     * Pre-execution setup
+     * Pre-execution setup.
      */
     protected function setUp()
     {
@@ -46,7 +45,7 @@ class XmlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of SimpleXMLElement to database value
+     * Test conversion of SimpleXMLElement to database value.
      */
     public function testXmlConvertsToDatabaseValue()
     {
@@ -54,7 +53,7 @@ class XmlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of database value to SimpleXMLElement
+     * Test conversion of database value to SimpleXMLElement.
      */
     public function testXmlConvertsToPHPValue()
     {
