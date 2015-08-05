@@ -34,9 +34,9 @@ abstract class AbstractArrayType extends Type
 
         if ($value === '') {
             return array();
-        } else {
-            return explode(',', $value);
         }
+
+        return explode(',', $value);
     }
 
     /**
