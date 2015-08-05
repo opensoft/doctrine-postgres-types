@@ -13,7 +13,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
  *
  * Only supports single dimensional arrays like text[].
  *
- * @author Richard Fullmer <richard.fullmer@opensoftdev.com
+ * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
  */
 class IntArrayType extends AbstractArrayType
 {
@@ -40,7 +40,7 @@ class IntArrayType extends AbstractArrayType
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $result = parent::convertToPHPValue($value, $platform);
-        
+
         return array_map('intval', $result);
     }
 }

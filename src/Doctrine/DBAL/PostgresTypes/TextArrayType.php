@@ -13,7 +13,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
  *
  * Only supports single dimensional arrays like text[].
  *
- * @author Richard Fullmer <richard.fullmer@opensoftdev.com
+ * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
  */
 class TextArrayType extends AbstractArrayType
 {
