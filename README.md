@@ -17,6 +17,13 @@ Provides Doctrine Type classes for common postgres types
                 tsquery: "Doctrine\\DBAL\\PostgresTypes\\TsqueryType"
                 xml: "Doctrine\\DBAL\\PostgresTypes\\XmlType"
                 inet: "Doctrine\\DBAL\\PostgresTypes\\InetType"
+            mapping_types:
+                _text: text_array
+                _int4: int_array
+                tsvector: ts_vector
+                tsquery: ts_query
+                xml: xml
+                inet: inet
 
 #### Using with Doctrine
 
