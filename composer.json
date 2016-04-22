@@ -9,15 +9,21 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "ext-pgsql": "*",
+        "doctrine/dbal": "2.*"
     },
     "require-dev": {
-        "doctrine/dbal": "*",
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "4.*|5.*"
     },
     "autoload": {
-        "psr-0": {
-            "Doctrine\\DBAL\\PostgresTypes\\": "src/"
+        "psr-4": {
+            "Doctrine\\DBAL\\PostgresTypes\\": "src/Doctrine/DBAL/PostgresTypes"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
         }
     }
 }
