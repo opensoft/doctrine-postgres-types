@@ -49,13 +49,13 @@ class TextArrayType extends Type
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         if (empty($value) || '{}' === $value) {
-            return [];
+            return array();
         }
 
         // @see http://stackoverflow.com/a/19082849/1160901
         preg_match_all('/(?<=^\{|,)(([^,"{]*)|\s*"((?:[^"\\\\]|\\\\(?:.|[0-9]+|x[0-9a-f]+))*)"\s*)(,|(?<!^\{)(?=\}$))/i', $value, $matches, PREG_SET_ORDER);
 
-        $array = [];
+        $array = array();
         foreach ($matches as $match) {
             if ('' !== $match[3]) {
                 $array[] = stripcslashes($match[3]);
