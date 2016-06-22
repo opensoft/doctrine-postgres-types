@@ -66,7 +66,6 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
             array('{"1,NULL"}', array("1,NULL")),
             array('{"NULL,2"}', array("NULL,2")),
             array('{"1",NULL}', array('1', null)),
-            array('{"NULL"}', array('NULL')),
             array('{"1","2"}', array('1', '2')),
             array('{"1\"2"}', array('1"2')),
             array('{"\"2"}', array('"2')),
