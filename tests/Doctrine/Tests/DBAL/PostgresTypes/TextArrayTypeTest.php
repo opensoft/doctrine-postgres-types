@@ -11,9 +11,8 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 
 /**
- * Class TextArrayTypeTest.
- *
- * Unit tests for the TextArray type
+ * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
+ * @author Eugene Leonovich <gen.work@gmail.com>
  */
 class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,17 +26,11 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
      */
     protected $_platform;
 
-    /**
-     * Pre-instantiation setup.
-     */
     public static function setUpBeforeClass()
     {
         Type::addType('text_array', 'Doctrine\\DBAL\\PostgresTypes\\TextArrayType');
     }
 
-    /**
-     * Pre-execution setup.
-     */
     protected function setUp()
     {
         $this->_platform = new PostgreSqlPlatform();
@@ -45,43 +38,52 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of PHP array to database value.
-     *
-     * @dataProvider databaseConvertProvider
+     * @dataProvider provideValidValues
      */
     public function testTextArrayConvertsToDatabaseValue($serialized, $array)
     {
-        $converted = $this->_type->convertToDatabaseValue($array, $this->_platform);
-        $this->assertInternalType('string', $converted);
-        $this->assertEquals($serialized, $converted);
+        $this->assertSame($serialized, $this->_type->convertToDatabaseValue($array, $this->_platform));
     }
 
     /**
-     * Test conversion of database value to PHP array.
-     *
-     * @dataProvider databaseConvertProvider
+     * @dataProvider provideToPHPValidValues
      */
     public function testTextArrayConvertsToPHPValue($serialized, $array)
     {
-        $converted = $this->_type->convertToPHPValue($serialized, $this->_platform);
-        $this->assertInternalType('array', $converted);
-        $this->assertEquals($array, $converted);
-
-        if (sizeof($converted) > 0) {
-            $this->assertInternalType('string', reset($converted));
-        }
+        $this->assertSame($array, $this->_type->convertToPHPValue($serialized, $this->_platform));
     }
 
-    /**
-     * Provider for conversion test values.
-     *
-     * @return array
-     */
-    public static function databaseConvertProvider()
+    public static function provideValidValues()
     {
         return array(
-            array('{simple,extended}', array('simple', 'extended')),
             array('{}', array()),
+            array('{""}', array('')),
+            array('{NULL}', array(null)),
+            array('{"1,NULL"}', array("1,NULL")),
+            array('{"NULL,2"}', array("NULL,2")),
+            array('{"1",NULL}', array('1', null)),
+            array('{"NULL"}', array('NULL')),
+            array('{"1,NULL"}', array("1,NULL")),
+            array('{"NULL,2"}', array("NULL,2")),
+            array('{"1",NULL}', array('1', null)),
+            array('{"NULL"}', array('NULL')),
+            array('{"1","2"}', array('1', '2')),
+            array('{"1\"2"}', array('1"2')),
+            array('{"\"2"}', array('"2')),
+            array('{"\"\""}', array('""')),
+        );
+    }
+
+    public static function provideToPHPValidValues()
+    {
+        return self::provideValidValues() + array(
+            array('{NULL,2}', array(null, '2')),
+            array('{NOTNULL}', array('NOTNULL')),
+            array('{NOTNULL,2}', array('NOTNULL', '2')),
+            array('{NULL2}', array('NULL2')),
+            array('{1,2}', array('1', '2')),
+            array('{"1", "2"}', array('1', '2')),
+            array('{"1,2", "3,4"}', array('1,2', '3,4')),
         );
     }
 }
