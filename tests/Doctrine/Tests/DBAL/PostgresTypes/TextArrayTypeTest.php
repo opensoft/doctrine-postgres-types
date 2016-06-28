@@ -64,12 +64,12 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
             array('{"1",NULL}', array('1', null)),
             array('{"NULL"}', array('NULL')),
             array('{"1,NULL"}', array('1,NULL')),
-            array('{"NULL,2"}', array('NULL,2')),
-            array('{"1",NULL}', array('1', null)),
             array('{"1","2"}', array('1', '2')),
             array('{"1\"2"}', array('1"2')),
             array('{"\"2"}', array('"2')),
             array('{"\"\""}', array('""')),
+            array('{"1","2"}', array('1', '2')),
+            array('{"1,2","3,4"}', array('1,2', '3,4')),
         );
     }
 
@@ -81,8 +81,6 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
             array('{NOTNULL,2}', array('NOTNULL', '2')),
             array('{NULL2}', array('NULL2')),
             array('{1,2}', array('1', '2')),
-            array('{"1", "2"}', array('1', '2')),
-            array('{"1,2", "3,4"}', array('1,2', '3,4')),
         );
     }
 }
