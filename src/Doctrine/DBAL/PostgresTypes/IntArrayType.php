@@ -8,16 +8,38 @@
 namespace Doctrine\DBAL\PostgresTypes;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 
 /**
- * IntArrayType.
- *
  * Only supports single dimensional arrays like text[].
  *
  * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
+ * @author Eugene Leonovich <gen.work@gmail.com>
  */
-class IntArrayType extends AbstractArrayType
+class IntArrayType extends Type
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function convertToPHPValue($value, AbstractPlatform $platform)
+    {
+        $value = trim($value, '{}');
+
+        if ($value === '') {
+            return array();
+        }
+
+        return array_map('intval', explode(',', $value));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        return '{'.implode(',', $value).'}';
+    }
+
     /**
      * @return string
      */
@@ -32,15 +54,5 @@ class IntArrayType extends AbstractArrayType
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         return '_int4';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
-    {
-        $result = parent::convertToPHPValue($value, $platform);
-
-        return array_map('intval', $result);
     }
 }
