@@ -13,8 +13,8 @@ Provides Doctrine Type classes for common postgres types
             types:
                 text_array: "Doctrine\\DBAL\\PostgresTypes\\TextArrayType"
                 int_array: "Doctrine\\DBAL\\PostgresTypes\\IntArrayType"
-                tsvector: "Doctrine\\DBAL\\PostgresTypes\\TsvectorType"
-                tsquery: "Doctrine\\DBAL\\PostgresTypes\\TsqueryType"
+                ts_vector: "Doctrine\\DBAL\\PostgresTypes\\TsvectorType"
+                ts_query: "Doctrine\\DBAL\\PostgresTypes\\TsqueryType"
                 xml: "Doctrine\\DBAL\\PostgresTypes\\XmlType"
                 inet: "Doctrine\\DBAL\\PostgresTypes\\InetType"
                 macaddr: "Doctrine\\DBAL\\PostgresTypes\\MacAddrType"
