@@ -17,6 +17,7 @@ Provides Doctrine Type classes for common postgres types
                 tsquery: "Doctrine\\DBAL\\PostgresTypes\\TsqueryType"
                 xml: "Doctrine\\DBAL\\PostgresTypes\\XmlType"
                 inet: "Doctrine\\DBAL\\PostgresTypes\\InetType"
+                macaddr: "Doctrine\\DBAL\\PostgresTypes\\MacAddrType"
             mapping_types:
                 _text: text_array
                 _int4: int_array
@@ -24,6 +25,7 @@ Provides Doctrine Type classes for common postgres types
                 tsquery: ts_query
                 xml: xml
                 inet: inet
+                macaddr: macaddr
 
 #### Using with Doctrine
 
@@ -37,6 +39,7 @@ Provides Doctrine Type classes for common postgres types
     Type::addType('tsquery', "Doctrine\\DBAL\\PostgresTypes\\TsqueryType");
     Type::addType('xml', "Doctrine\\DBAL\\PostgresTypes\\XmlType");
     Type::addType('inet', "Doctrine\\DBAL\\PostgresTypes\\InetType");
+    Type::addType('macaddr', "Doctrine\\DBAL\\PostgresTypes\\MacAddrType");
 
 #### License
 
