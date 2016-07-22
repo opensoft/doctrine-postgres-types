@@ -10,7 +10,6 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "ext-pdo_pgsql": "*",
         "doctrine/dbal": "2.*"
     },
     "require-dev": {
