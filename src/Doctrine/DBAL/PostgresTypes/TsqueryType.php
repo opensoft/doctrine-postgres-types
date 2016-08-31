@@ -46,6 +46,6 @@ class TsqueryType extends Type
      */
     public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform)
     {
-        return sprintf('to_tsquery(%s)', $sqlExpr);
+        return sprintf('plainto_tsquery(%s)', $sqlExpr);
     }
 }
