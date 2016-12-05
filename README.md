@@ -5,6 +5,14 @@ Provides Common Postgres Types for Doctrine
 
 Provides Doctrine Type classes for common postgres types
 
+### Installation
+
+```bash
+composer require opensoft/doctrine-postgres-types
+```
+
+### Usage
+
 #### Using with Symfony2 Doctrine Configuration
 
     # Doctrine Configuration
@@ -41,6 +49,6 @@ Provides Doctrine Type classes for common postgres types
     Type::addType('inet', "Doctrine\\DBAL\\PostgresTypes\\InetType");
     Type::addType('macaddr', "Doctrine\\DBAL\\PostgresTypes\\MacAddrType");
 
-#### License
+### License
 
 Licensed under the MIT License
