@@ -69,4 +69,10 @@ class MacAddrType extends Type
     {
         return 'macaddr';
     }
+
+    /** {@inheritdoc} */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
