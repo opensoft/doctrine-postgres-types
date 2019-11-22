@@ -83,4 +83,10 @@ class TextArrayType extends Type
     {
         return 'TEXT[]';
     }
+
+    /** {@inheritdoc} */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }

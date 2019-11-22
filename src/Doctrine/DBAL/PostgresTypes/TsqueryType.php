@@ -48,4 +48,10 @@ class TsqueryType extends Type
     {
         return sprintf('plainto_tsquery(%s)', $sqlExpr);
     }
+
+    /** {@inheritdoc} */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }

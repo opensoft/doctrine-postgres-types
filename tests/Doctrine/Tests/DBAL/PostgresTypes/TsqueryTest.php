@@ -7,20 +7,15 @@
  */
 namespace Doctrine\Tests\DBAL\Types;
 
+use Doctrine\DBAL\PostgresTypes\TsqueryType;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Doctrine\Tests\DBAL\Types\TsqueryTest.
- *
- * Unit tests for the Tsquery type
- *
- * @author Ivan Molchanov <ivan.molchanov@opensoftdev.ru>
- */
-class TsqueryTest extends \PHPUnit_Framework_TestCase
+final class TsqueryTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\TsqueryType
+     * @var TsqueryType
      */
     protected $type;
 
@@ -29,27 +24,18 @@ class TsqueryTest extends \PHPUnit_Framework_TestCase
      */
     protected $platform;
 
-    /**
-     * Pre-instantiation setup.
-     */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
-        Type::addType('tsquery', 'Doctrine\\DBAL\\PostgresTypes\\TsqueryType');
+        Type::addType('tsquery', TsqueryType::class);
     }
 
-    /**
-     * Pre-execution setup.
-     */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->platform = new PostgreSqlPlatform();
         $this->type = Type::getType('tsquery');
     }
 
-    /**
-     * Test conversion to database value.
-     */
-    public function testConvertToDatabaseValueSQL()
+    public function testConvertToDatabaseValueSQL() : void
     {
         $this->assertEquals('plainto_tsquery(test)', $this->type->convertToDatabaseValueSQL('test', $this->platform));
     }
