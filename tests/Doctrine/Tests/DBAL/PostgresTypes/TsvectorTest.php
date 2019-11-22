@@ -7,18 +7,15 @@
  */
 namespace Doctrine\Tests\DBAL\Types;
 
+use Doctrine\DBAL\PostgresTypes\TsvectorType;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Class TsvectorTest.
- *
- * Unit tests for the TextArray type
- */
-class TsvectorTest extends \PHPUnit_Framework_TestCase
+final class TsvectorTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\TsvectorType
+     * @var TsvectorType
      */
     protected $_type;
 
@@ -27,35 +24,23 @@ class TsvectorTest extends \PHPUnit_Framework_TestCase
      */
     protected $_platform;
 
-    /**
-     * Pre-instantiation setup.
-     */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
-        Type::addType('tsvector', 'Doctrine\\DBAL\\PostgresTypes\\TsvectorType');
+        Type::addType('tsvector', TsvectorType::class);
     }
 
-    /**
-     * Pre-execution setup.
-     */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->_platform = new PostgreSqlPlatform();
         $this->_type = Type::getType('tsvector');
     }
 
-    /**
-     * Test conversion of PHP array to database value.
-     */
-    public function testTsvectorConvertsToDatabaseValue()
+    public function testTsvectorConvertsToDatabaseValue() : void
     {
         $this->assertInternalType('string', $this->_type->convertToDatabaseValue(array('simple', 'extended'), $this->_platform));
     }
 
-    /**
-     * Test conversion of database value to PHP array.
-     */
-    public function testTsvectorConvertsToPHPValue()
+    public function testTsvectorConvertsToPHPValue() : void
     {
         $this->assertInternalType('array', $this->_type->convertToPHPValue('ts:simple ts:extended', $this->_platform));
     }

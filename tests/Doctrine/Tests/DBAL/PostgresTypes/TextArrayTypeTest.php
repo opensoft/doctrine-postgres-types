@@ -7,17 +7,15 @@
  */
 namespace Doctrine\Tests\DBAL\Types;
 
+use Doctrine\DBAL\PostgresTypes\TextArrayType;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
- * @author Eugene Leonovich <gen.work@gmail.com>
- */
-class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
+final class TextArrayTypeTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\TextArrayType
+     * @var TextArrayType
      */
     protected $_type;
 
@@ -26,12 +24,12 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
      */
     protected $_platform;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
-        Type::addType('text_array', 'Doctrine\\DBAL\\PostgresTypes\\TextArrayType');
+        Type::addType('text_array', TextArrayType::class);
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->_platform = new PostgreSqlPlatform();
         $this->_type = Type::getType('text_array');
@@ -40,7 +38,7 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideValidValues
      */
-    public function testTextArrayConvertsToDatabaseValue($serialized, $array)
+    public function testTextArrayConvertsToDatabaseValue($serialized, $array) : void
     {
         $this->assertSame($serialized, $this->_type->convertToDatabaseValue($array, $this->_platform));
     }
@@ -48,39 +46,39 @@ class TextArrayTypeTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideToPHPValidValues
      */
-    public function testTextArrayConvertsToPHPValue($serialized, $array)
+    public function testTextArrayConvertsToPHPValue($serialized, $array) : void
     {
         $this->assertSame($array, $this->_type->convertToPHPValue($serialized, $this->_platform));
     }
 
-    public static function provideValidValues()
+    public static function provideValidValues() : array
     {
-        return array(
-            array('{}', array()),
-            array('{""}', array('')),
-            array('{NULL}', array(null)),
-            array('{"1,NULL"}', array('1,NULL')),
-            array('{"NULL,2"}', array('NULL,2')),
-            array('{"1",NULL}', array('1', null)),
-            array('{"NULL"}', array('NULL')),
-            array('{"1,NULL"}', array('1,NULL')),
-            array('{"1","2"}', array('1', '2')),
-            array('{"1\"2"}', array('1"2')),
-            array('{"\"2"}', array('"2')),
-            array('{"\"\""}', array('""')),
-            array('{"1","2"}', array('1', '2')),
-            array('{"1,2","3,4"}', array('1,2', '3,4')),
-        );
+        return [
+            ['{}', []],
+            ['{""}', ['']],
+            ['{NULL}', [null]],
+            ['{"1,NULL"}', ['1,NULL']],
+            ['{"NULL,2"}', ['NULL,2']],
+            ['{"1",NULL}', ['1', null]],
+            ['{"NULL"}', ['NULL']],
+            ['{"1,NULL"}', ['1,NULL']],
+            ['{"1","2"}', ['1', '2']],
+            ['{"1\"2"}', ['1"2']],
+            ['{"\"2"}', ['"2']],
+            ['{"\"\""}', ['""']],
+            ['{"1","2"}', ['1', '2']],
+            ['{"1,2","3,4"}', ['1,2', '3,4']],
+        ];
     }
 
-    public static function provideToPHPValidValues()
+    public static function provideToPHPValidValues() : array
     {
-        return self::provideValidValues() + array(
-            array('{NULL,2}', array(null, '2')),
-            array('{NOTNULL}', array('NOTNULL')),
-            array('{NOTNULL,2}', array('NOTNULL', '2')),
-            array('{NULL2}', array('NULL2')),
-            array('{1,2}', array('1', '2')),
-        );
+        return self::provideValidValues() + [
+            ['{NULL,2}', [null, '2']],
+            ['{NOTNULL}', ['NOTNULL']],
+            ['{NOTNULL,2}', ['NOTNULL', '2']],
+            ['{NULL2}', ['NULL2']],
+            ['{1,2}', ['1', '2']],
+        ];
     }
 }

@@ -9,14 +9,14 @@ namespace Doctrine\Tests\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use Doctrine\DBAL\PostgresTypes\InetType;
 
-/**
- * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
- */
-class InetTypeTest extends \PHPUnit_Framework_TestCase
+final class InetTypeTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\InetType
+     * @var InetType
      */
     protected $_type;
 
@@ -25,29 +25,21 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
      */
     protected $_platform;
 
-    /**
-     * Pre-instantiation setup.
-     */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
-        Type::addType('inet', 'Doctrine\\DBAL\\PostgresTypes\\InetType');
+        Type::addType('inet', InetType::class);
     }
 
-    /**
-     * Pre-execution setup.
-     */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->_platform = new PostgreSqlPlatform();
         $this->_type = Type::getType('inet');
     }
 
     /**
-     * Test conversion of PHP array to database value.
-     *
      * @dataProvider databaseConvertProvider
      */
-    public function testInetConvertsToDatabaseValue($serialized, $phpValueToConvert)
+    public function testInetConvertsToDatabaseValue($serialized, $phpValueToConvert) : void
     {
         $converted = $this->_type->convertToDatabaseValue($phpValueToConvert, $this->_platform);
         $this->assertInternalType('string', $converted);
@@ -55,11 +47,9 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of database value to PHP array.
-     *
      * @dataProvider databaseConvertProvider
      */
-    public function testInetConvertsToPHPValue($serialized, $databaseValueToConvert)
+    public function testInetConvertsToPHPValue($serialized, $databaseValueToConvert) : void
     {
         $converted = $this->_type->convertToPHPValue($serialized, $this->_platform);
         $this->assertInternalType('string', $converted);
@@ -67,38 +57,30 @@ class InetTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     *
      * @dataProvider exceptionProvider
      */
-    public function testInetThrowExceptionOnConversion($value)
+    public function testInetThrowExceptionOnConversion($value) : void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->_type->convertToDatabaseValue($value, $this->_platform);
     }
 
-    /**
-     * Provider for conversion test values.
-     *
-     * @return array
-     */
-    public static function databaseConvertProvider()
+    public static function databaseConvertProvider() : array
     {
-        return array(
-            array('10.0.0.1', '10.0.0.1'),
-            array('10.0.0.1/4', '10.0.0.1/4'),
-        );
+        return [
+            ['10.0.0.1', '10.0.0.1'],
+            ['10.0.0.1/4', '10.0.0.1/4'],
+        ];
     }
 
-    /**
-     * @return array
-     */
-    public static function exceptionProvider()
+    public static function exceptionProvider() : array
     {
-        return array(
-            array(''),
-            array('someothervalue'),
-            array(123),
-            array('123345'),
-        );
+        return [
+            [''],
+            ['someothervalue'],
+            [123],
+            ['123345'],
+        ];
     }
 }

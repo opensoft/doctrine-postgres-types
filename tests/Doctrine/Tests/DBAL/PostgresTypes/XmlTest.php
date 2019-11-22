@@ -9,16 +9,14 @@ namespace Doctrine\Tests\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use PHPUnit\Framework\TestCase;
+use Doctrine\DBAL\PostgresTypes\XmlType;
+use SimpleXMLElement;
 
-/**
- * Class XmlTest.
- *
- * Unit tests for the XML type
- */
-class XmlTest extends \PHPUnit_Framework_TestCase
+final class XmlTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\XmlType
+     * @var XmlType
      */
     protected $_type;
 
@@ -27,36 +25,24 @@ class XmlTest extends \PHPUnit_Framework_TestCase
      */
     protected $_platform;
 
-    /**
-     * Pre-instantiation setup.
-     */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
-        Type::addType('xml', 'Doctrine\\DBAL\\PostgresTypes\\XmlType');
+        Type::addType('xml', XmlType::class);
     }
 
-    /**
-     * Pre-execution setup.
-     */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->_platform = new PostgreSqlPlatform();
         $this->_type = Type::getType('xml');
     }
 
-    /**
-     * Test conversion of SimpleXMLElement to database value.
-     */
-    public function testXmlConvertsToDatabaseValue()
+    public function testXmlConvertsToDatabaseValue() : void
     {
-        $this->assertInternalType('string', $this->_type->convertToDatabaseValue(new \SimpleXMLElement('<book></book>'), $this->_platform));
+        $this->assertInternalType('string', $this->_type->convertToDatabaseValue(new SimpleXMLElement('<book></book>'), $this->_platform));
     }
 
-    /**
-     * Test conversion of database value to SimpleXMLElement.
-     */
-    public function testXmlConvertsToPHPValue()
+    public function testXmlConvertsToPHPValue() : void
     {
-        $this->assertInstanceOf('\SimpleXMLElement', $this->_type->convertToPHPValue('<book></book>', $this->_platform));
+        $this->assertInstanceOf(SimpleXMLElement::class, $this->_type->convertToPHPValue('<book></book>', $this->_platform));
     }
 }

@@ -7,18 +7,15 @@
  */
 namespace Doctrine\Tests\DBAL\Types;
 
+use Doctrine\DBAL\PostgresTypes\IntArrayType;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Class IntArrayTypeTest.
- *
- * Unit tests for the IntArray type
- */
-class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
+final class IntArrayTypeTest extends TestCase
 {
     /**
-     * @var \Doctrine\DBAL\PostgresTypes\IntArrayType
+     * @var IntArrayType
      */
     protected $_type;
 
@@ -27,29 +24,21 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
      */
     protected $_platform;
 
-    /**
-     * Pre-instantiation setup.
-     */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
-        Type::addType('int_array', 'Doctrine\\DBAL\\PostgresTypes\\IntArrayType');
+        Type::addType('int_array', IntArrayType::class);
     }
 
-    /**
-     * Pre-execution setup.
-     */
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->_platform = new PostgreSqlPlatform();
         $this->_type = Type::getType('int_array');
     }
 
     /**
-     * Test conversion of PHP array to database value.
-     *
      * @dataProvider databaseConvertProvider
      */
-    public function testIntArrayConvertsToDatabaseValue($serialized, $array)
+    public function testIntArrayConvertsToDatabaseValue($serialized, $array) : void
     {
         $converted = $this->_type->convertToDatabaseValue($array, $this->_platform);
         $this->assertInternalType('string', $converted);
@@ -57,11 +46,9 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test conversion of database value to PHP array.
-     *
      * @dataProvider databaseConvertProvider
      */
-    public function testIntArrayConvertsToPHPValue($serialized, $array)
+    public function testIntArrayConvertsToPHPValue($serialized, $array) : void
     {
         $converted = $this->_type->convertToPHPValue($serialized, $this->_platform);
         $this->assertInternalType('array', $converted);
@@ -72,16 +59,11 @@ class IntArrayTypeTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * Provider for conversion test values.
-     *
-     * @return array
-     */
-    public static function databaseConvertProvider()
+    public static function databaseConvertProvider() : array
     {
-        return array(
-            array('{1,2,3}', array(1,2,3)),
-            array('{}', array()),
-        );
+        return [
+            ['{1,2,3}', [1, 2, 3]],
+            ['{}', []],
+        ];
     }
 }
